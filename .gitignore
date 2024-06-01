@@ -1,1 +1,6 @@
-
+**/__pychache__
+/logs
+/.idea/*
+/.vscode/*
+/venv/Lib/site-packages/*
+/Database
