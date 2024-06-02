@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, session, Blueprin
 from Models import User
 from logging_utility import logger
 from utility import hash_password
+from Models import Role
 
 
 register_blueprint = Blueprint("register", __name__, template_folder='./templates')
@@ -24,10 +25,9 @@ def register():
             return render_template('register.jinja-html', error=error)
 
         hashed_password = hash_password(password)
-        User.create_user(username, email, hashed_password)
-
-        session['email'] = email
-        print(url_for('dashboard.dashboard'))
+        role = Role.get_by_id(1000000000000001)
+        User.create_user(username, email, hashed_password, roles=[role])
+        session["user"] = User.find_user_by_mail(email)
         return redirect(url_for('dashboard.dashboard'))
 
     return render_template('register.jinja-html')

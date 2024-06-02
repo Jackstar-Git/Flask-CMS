@@ -19,7 +19,7 @@ class UUID:
     def get_next_uuid(cls, uuid_type):
         new_uuid = str(cls.load_uuid(uuid_type) + 1)
         cls._save_uuid(uuid_type, new_uuid)
-        return new_uuid
+        return int(new_uuid)
 
     @classmethod
     def _save_uuid(cls, uuid_type, new_value):

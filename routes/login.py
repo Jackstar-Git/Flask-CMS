@@ -11,13 +11,11 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        remember = request.form.get('remember')
+        remember = request.form.get("remember-me", type=bool)
 
         user = User.find_user_by_mail(email)
-        print(user)
         if user and user['password'] == hash_password(password):
-            session['email'] = email
-            session["_id"] = user["_id"]
+            session["user"] = user
             if remember:
                 session.permanent = True
             return redirect(url_for('dashboard.dashboard'))

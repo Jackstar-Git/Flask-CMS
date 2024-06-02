@@ -3,15 +3,16 @@ import os
 from logging_utility import logger
 from routes import blueprints
 from dotenv import load_dotenv
+from waitress import serve
 
 
 load_dotenv()
 
-app = Flask(__name__, template_folder='templates')
+template_name = os.getenv("THEME_NAME")
+app = Flask(__name__, template_folder=f'themes/{template_name}/templates', static_folder=f"themes/{template_name}/static")  
 app.secret_key = os.urandom(24)
 
 for route in blueprints:
-    print(route)
     app.register_blueprint(route)
 
 
@@ -30,5 +31,6 @@ def page_not_found(error):
 
 if __name__ == '__main__':
     app.run(host="localhost", port=8080, debug=True)
+    #serve(app, host='0.0.0.0', port=8080)
     logger.info("*"*50)
     logger.info("Application Server started!")

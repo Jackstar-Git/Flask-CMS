@@ -2,5 +2,6 @@
 /logs
 /.idea/*
 /.vscode/*
-/venv
+/venv/Lib/site-packages/*
 /Database
+**/pyvenv.cfg

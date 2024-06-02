@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/admin.css">
+    <title>Admin</title>
+</head>
+<body>
+    <nav>
+        <img id="nav-logo" src="static/assets/images/Logo.png">
+        <a href="" class="nav-item">Home Dashboard</a>
+        <a href="" class="nav-item">Content</a>
+        <a href="" class="nav-item">Menus</a>
+        <a href="" class="nav-item">Componentns</a>
+        <a href="" class="nav-item">Users</a>
+        <a href="" class="nav-item">System</a>
+        <a href="" class="nav-item"></a>
+        <a href="" class="nav-item">Help</a>
+    </nav>
+</body>
+</html>

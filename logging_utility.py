@@ -3,7 +3,7 @@ import os
 from logging.handlers import RotatingFileHandler
 
 
-log_file = "C:\\Users\\Jakob\\Documents\\Coding\\PycharmProjects\\Flask Test Projekt\\logs\\app.log"
+log_file = "logs\\app.log"
 formatter = logging.Formatter("%(asctime)s: %(levelname)s - %(message)s", "%b %dth, %Y - %H:%M:%S")
 
 handler = RotatingFileHandler(log_file, mode='a', maxBytes=10 * 1024 * 1024,
