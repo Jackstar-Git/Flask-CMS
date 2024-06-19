@@ -3,20 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="static/css/admin.css">
-    <title>Admin</title>
 </head>
 <body>
-    <nav>
-        <img id="nav-logo" src="static/assets/images/Logo.png">
-        <a href="" class="nav-item">Home Dashboard</a>
-        <a href="" class="nav-item">Content</a>
-        <a href="" class="nav-item">Menus</a>
-        <a href="" class="nav-item">Componentns</a>
-        <a href="" class="nav-item">Users</a>
-        <a href="" class="nav-item">System</a>
-        <a href="" class="nav-item"></a>
-        <a href="" class="nav-item">Help</a>
-    </nav>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Dashboard</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i>Home Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-edit"></i>Content</a></li>
+                    <li><a href="#"><i class="fas fa-bars"></i>Menus</a></li>
+                    <li><a href="#"><i class="fas fa-puzzle-piece"></i>Components</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i>Users</a></li>
+                    <li><a href="#"><i class="fas fa-cogs"></i>System</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i>Help</a></li>
+                    <li><a href="#"><i class="fas fa-chart-bar"></i>Analytics</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i>Settings</a></li>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Welcome, Admin</h1>
+                <p>Here's an overview of your dashboard</p>
+            </header>
+            <section class="content-section">
+                <div class="card">
+                    <h3>Home Dashboard</h3>
+                    <p>Overview of the system status and performance.</p>
+                </div>
+                <div class="card">
+                    <h3>Content</h3>
+                    <p>Manage site content and media.</p>
+                </div>
+                <div class="card">
+                    <h3>Menus</h3>
+                    <p>Customize navigation menus.</p>
+                </div>
+                <div class="card">
+                    <h3>Components</h3>
+                    <p>Manage site components and modules.</p>
+                </div>
+                <div class="card">
+                    <h3>Users</h3>
+                    <p>Manage user accounts and permissions.</p>
+                </div>
+                <div class="card">
+                    <h3>System</h3>
+                    <p>System settings and configurations.</p>
+                </div>
+                <div class="card">
+                    <h3>Help</h3>
+                    <p>Access help and documentation.</p>
+                </div>
+                <div class="card">
+                    <h3>Analytics</h3>
+                    <p>View site analytics and reports.</p>
+                </div>
+                <div class="card">
+                    <h3>Settings</h3>
+                    <p>Adjust system settings and preferences.</p>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

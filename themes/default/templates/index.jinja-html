@@ -4,11 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/index.css">
-    <title>Home</title>
-
+    <title>Flask-CMS</title>
 </head>
 <body>
-    <h2>Welcome to the Home Page</h2>
-    <p>Please <a href="/login">login</a> or <a href="/register">register</a> to continue.</p><br>
+    {% include 'navbar.jinja-html' %}
+    <!--<header>
+        <div class="left">
+            <h1>Lorem ipsum dolor <span>sit amet</span></h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a href="#">
+                <span class="material-symbols-outlined">arrow_forward</span>
+                <span>Get Started</span>
+            </a>
+        </div>
+        <div class="container">
+            <img src="Hero-image.png">
+        </div>
+    </header>
+    <h2 class="seperator">
+        How to Get Started!
+    </h2>
+    <div class="comments">
+        <div class="item">
+            <div class="header">
+                <span class="material-symbols-outlined">star</span>
+                <h2>Lorem Ipsum</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+        </div>
+        <div class="item">
+            <div class="header">
+                <span class="material-symbols-outlined">star</span>
+                <h2>Lorem Ipsum</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+        </div>
+        <div class="item">
+            <div class="header">
+                <span class="material-symbols-outlined">star</span>
+                <h2>Lorem Ipsum</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+        </div>
+    </div>
+    <div>
+        <h2 class="seperator">See what some People say!</h2>
+    </div>
+    <div class="saying">
+    <div>
+    <div class="item">
+        <div class="info">
+            <div>
+                <p>Lorem Ipsum Dolor Sit amet</p>
+                <h6>-Name</h6>
+            </div>
+        </div>
+    </div>
+</div>
+    <div>
+        <div class="item">
+            <div class="info">
+                <div>
+                    <p>Lorem Ipsum Dolor Sit amet</p>
+                    <h6>-Name</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="item">
+            <div class="info">
+                <div>
+                    <p>Lorem Ipsum Dolor Sit amet</p>
+                    <h6>-Name</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div>
+        &nbsp;
+    </div>-->
+    <div style="height: 80vh;"></div>
+    {% include 'footer.jinja-html' %}
 </body>
 </html>

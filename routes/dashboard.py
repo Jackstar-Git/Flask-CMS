@@ -8,7 +8,7 @@ dashboard_blueprint = Blueprint("dashboard", __name__, template_folder='./templa
 @dashboard_blueprint.route('/dashboard')
 def dashboard():
     if 'user' in session:
-        return render_template('dashboard.jinja-html', user=session["user"])
+        return render_template("dashboard.jinja-html")
     else:
         return redirect(url_for('login.login'))
 

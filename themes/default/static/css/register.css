@@ -1,0 +1,55 @@
+@import url(root.css);
+
+header {
+    background-color: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+nav {
+    background-color: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.container {
+    padding: 20px;
+}
+footer {
+    background-color: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+form {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+form label {
+    display: block;
+    margin-bottom: 8px;
+}
+form input, form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+form button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+}

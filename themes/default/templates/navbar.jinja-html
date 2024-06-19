@@ -1,0 +1,19 @@
+<head>
+    <link rel="stylesheet" href="static/css/navbar.css">
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">Flask-CMS</a>
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Blog</a>
+            <a href="#">About Us</a>
+        </div>
+        <div class="login">
+            <button class="signup">Get Started</button>
+            <button>Login</button>
+        </div>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<head>
+    <link rel="stylesheet" href="static/css/footer.css">
+</head>
+<footer>
+        <h3>Lorem ipsum Dolor Sit amet</h3> 
+        <div class="right">
+            <div class="links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Condition</a>
+                <a href="#">Cooperation</a>
+                <a href="#">Sponsorship</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="social">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-regular fa-envelope"></i>
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+            <div class="copyright">
+                <p>Copyright &copy; 2024. All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>

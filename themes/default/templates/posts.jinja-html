@@ -8,7 +8,7 @@
 <body>
     <h2>Posts</h2>
     <div class="posts">
-        {% for post in posts %}
+        {% for post in Post.load_posts() %}
             <div class="post">
                 <h2>{{post.get("title", "Unknown title")}}</h2>
                 <span><b>{{post.get("author")}}</b></span>

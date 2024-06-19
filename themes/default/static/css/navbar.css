@@ -1,0 +1,42 @@
+@import url(root.css);
+
+nav {
+    margin-inline: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22.5%;
+    height: 80px;
+}
+
+nav a.logo {
+    font-size: 33px;
+    color: #0f2182;
+    font-weight: 600;
+}
+
+nav .links a {
+    margin-right: 20px;
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: all 0.8s ease;  
+}
+nav .links a:hover {
+    color: #0f2182;
+}
+
+nav .login button {
+    padding: 8px 14px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+nav .login button.signup{
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 14px;
+    transition: all 0.3s ease;
+} 

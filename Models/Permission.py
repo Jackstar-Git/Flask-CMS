@@ -3,13 +3,27 @@ from .DataBase import DBClient
 from .User import User
 
 permission_values = {
-        "view_posts": 0b00000001,
-        "create_posts":0b00000010,
-        "delete": 0b00000100,
-        "update": 0b000001000,
-        "delete_users": 0b000010000,
-        "admin": 0b100000000
-    }
+    "view_posts":         0b00000000000000000001,
+    "create_posts":       0b00000000000000000010,
+    "delete_posts":       0b00000000000000000100,
+    "update_posts":       0b00000000000000001000,
+    "delete_comments":    0b00000000000000010000,
+    "create_comments":    0b00000000000000100000,
+    "view_comments":      0b00000000000001000000,
+    "view_users":         0b00000000000010000000,
+    "create_users":       0b00000000000100000000,
+    "delete_users":       0b00000000001000000000,
+    "update_users":       0b00000000010000000000,
+    "admin_access":       0b00000000100000000000,
+    "undefined_atm":      0b00000001000000000000,
+    "file_uploads":       0b00000010000000000000,
+    "file_management":    0b00000100000000000000,
+    "template_editing":   0b00001000000000000000,
+    "plugin_management":  0b00010000000000000000,
+    "seo_settings":       0b00100000000000000000,
+    "analytics_access":   0b01000000000000000000,
+    "password_recovery":  0b10000000000000000000
+}
 
 
 class Permissions:
@@ -41,15 +55,28 @@ class Permissions:
 
     @classmethod
     def all(cls) -> Self:
-        return cls(0b111111111)
+        return cls(0b11111111111111111111)
 
     @classmethod
     def none(cls) -> Self:
-        return cls(0b000000000)
-    
+        return cls(0b00000000000000000000)
+
+    @classmethod
+    def admin(cls) -> Self:
+        return cls(0b10000000111111111111)
+
+    @classmethod
+    def content_management(cls) -> Self:
+        return cls(0b0000000000011111111)
+
+    @classmethod
+    def user_management(cls) -> Self:
+        return cls(0b00000000011110000000)
+
     @classmethod
     def default(cls) -> Self:
-        return cls(0b000000011)
+        return cls(0b00000000000010000001)
+
     
     @staticmethod   
     def get_user_permissions(user_id: int)-> list:

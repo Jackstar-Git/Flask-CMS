@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, session, Blueprint, abort
-from Models import User, Post, Permissions, permission_values
+from Models import Post, Permissions, permission_values
 from logging_utility import logger
 
 post_blueprint = Blueprint("create", __name__, template_folder='./templates')
@@ -8,8 +8,7 @@ post_blueprint = Blueprint("create", __name__, template_folder='./templates')
 
 @post_blueprint.route("/posts")
 def show_posts():
-    posts = Post.load_posts()
-    return render_template("posts.jinja-html", posts=posts)
+    return render_template("posts.jinja-html")
 
 
 @post_blueprint.route("/post/<int:post_id>")
