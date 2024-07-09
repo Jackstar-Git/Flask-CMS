@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/index.css">
+    <link rel="shortcut icon" href="uploads/favicon.ico" type="image/x-icon">
     <title>Flask-CMS</title>
 </head>
 <body>
     {% include 'navbar.jinja-html' %}
+    {% set x = User.find_all_users(query_params["test"]) %}
+
+
+
+
     <!--<header>
         <div class="left">
             <h1>Lorem ipsum dolor <span>sit amet</span></h1>
@@ -85,7 +91,10 @@
     <div>
         &nbsp;
     </div>-->
-    <div style="height: 80vh;"></div>
+    <div style="height: 80vh;">
+        <input type="text" id="search" placeholder="Search users..." onkeyup="test()"/>
+        <div id="test"></div>
+    </div>
     {% include 'footer.jinja-html' %}
 </body>
 </html>

@@ -15,8 +15,9 @@ class User:
                 "username": username,
                 'email': email, 
                 'password': password,
-                "created_at": datetime.now(),
-                "role_ids": [role.get("_id") for role in roles]
+                "created_at": datetime.timestamp(),
+                "role_ids": [role.get("_id") for role in roles],
+                "login_tries": 0
                 }
         DBClient.users_collection.insert_one(data)
         logger.info("Successfully added the following user to the database: '%s'", email)
@@ -30,10 +31,30 @@ class User:
     @staticmethod
     def find_user_by_id(_id: int):
         query = {"_id": _id}
+        print(query)
         result = DBClient.users_collection.find_one(query)
+        
         return result
 
+    @staticmethod
+    def find_users_by_name(name: str) -> list:
+        query = {"username": {"$regex": f"\\b\\w*{name}\\w*\\b", "$options": "i"}}
+        result = DBClient.users_collection.find(query, {"password": 0})
+        return list(result)
+    
+    @staticmethod
+    def find_all_users(num) -> list:
+        result = DBClient.users_collection.find({}, {"password": 0})
+        return list(result)
+    
     @staticmethod
     def delete_user(_id: str):
         query = {"_id": _id}
         DBClient.users_collection.delete_one(query)
+    
+    @staticmethod
+    def update_user_data(_id: int, **new_values):
+        query = {"_id": _id}
+        newvalues = { "$set": new_values}
+
+        DBClient.users_collection.update_one(query, newvalues)

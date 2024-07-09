@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, make_response
+from flask import Flask, render_template, url_for, make_response, request
 import os
 from logging_utility import logger
 from routes import blueprints
@@ -7,20 +7,24 @@ from waitress import serve
 from datetime import datetime
 from inspect import getmembers, isclass, isfunction
 import functions
+from FlaskClass import app
 
 
 load_dotenv()
 
-template_name = os.getenv("THEME_NAME")
-app = Flask(__name__, template_folder=f'themes/{template_name}/templates', static_folder=f"themes/{template_name}/static")  
-app.secret_key = os.urandom(24)
 
 for route in blueprints:
     app.register_blueprint(route)
 
+@app.before_request
+def query_handler():
+    request.query_params = dict(request.args)
+
+
 @app.context_processor
 def utility_processor():
-    methods = {name: func for name, func in getmembers(functions, lambda member: isclass(member) or isfunction(member))}
+    methods: dict = {name: func for name, func in getmembers(functions, lambda member: isclass(member) or isfunction(member))}
+    methods.update({"query_params": request.query_params})
     return methods
 
 @app.route('/')
@@ -42,7 +46,7 @@ def sitemap():
 
 @app.errorhandler(404)
 def page_not_found(error):
-    logger.info("A page was not found! %s", error)
+    logger.info(f"A page was not found: {request.path}; {error}")
     return render_template("404.html")
 
 @app.errorhandler(403)
