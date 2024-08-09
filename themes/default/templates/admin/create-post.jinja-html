@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post - Admin Panel</title>
+    <link href="{{ url_for('static', filename='css/admin/create-post.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        {% include "admin/sidebar.jinja-html" %}
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Create New Post</h1>
+            </div>
+            <h2>Post Details</h2>
+            <form action="{{ url_for('admin.create_post') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Post Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category">
+                        {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tags:</label>
+                    <input type="text" id="tags" name="tags" placeholder="Comma separated tags">
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Post Content:</label>
+                    <div class="toolbar">
+                        <button type="button" onclick="applyStyle('bold')"><i class="fas fa-bold"></i></button>
+                        <button type="button" onclick="applyStyle('italic')"><i class="fas fa-italic"></i></button>
+                        <button type="button" onclick="applyStyle('underline')"><i class="fas fa-underline"></i></button>
+                        <button type="button" onclick="applyStyle('strikethrough')"><i class="fas fa-strikethrough"></i></button>
+                        <input type="color" id="color-picker" onchange="changeColor()" title="Text Color">
+                        <button type="button" onclick="applyLineStyle('unordered')">Unordered List</button>
+                        <button type="button" onclick="applyLineStyle('h1')">H1</button>
+                        <button type="button" onclick="applyLineStyle('h2')">H2</button>
+                        <button type="button" onclick="applyLineStyle('h3')">H3</button>
+                        <button type="button" onclick="uploadImage()">Upload Image</button>
+                        <button type="button" onclick="toggleView()">View Source/Output</button>
+                    </div>
+                    <textarea id="content" name="content"></textarea>
+                    <div id="output"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Featured Image:</label>
+                    <input type="file" id="image" name="image">
+                </div>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-draft">Save as Draft</button>
+                    <button type="submit" class="btn">Create Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function applyStyle(style) {
+            const textarea = document.getElementById("content");
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+
+            if (selectedText.length > 0) {
+                let markdownSyntax = "";
+                switch (style) {
+                    case "bold":
+                        markdownSyntax = "**";
+                        break;
+                    case "underline":
+                        markdownSyntax = "__";
+                        break;
+                    case "italic":
+                        markdownSyntax = "*";
+                        break;
+                    case "strikethrough":
+                        markdownSyntax = "~~";
+                        break;
+                    default:
+                        console.error("Unknown style:", style);
+                        return;
+                }
+
+                const newText = `${markdownSyntax}${selectedText}${markdownSyntax}`;
+                textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+                textarea.setSelectionRange(start + markdownSyntax.length, start + newText.length - markdownSyntax.length);
+            }
+        }
+
+        function applyLineStyle(style) {
+            const textarea = document.getElementById("content");
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+
+            const lines = selectedText.split(/\r?\n/);
+
+            if (selectedText.length > 0) {
+                let markdownSyntax = "";
+                switch (style) {
+                    case "unordered":
+                        markdownSyntax = "- ";
+                        break;
+                    case "h1":
+                        markdownSyntax = "# ";
+                        break;
+                    case "h2":
+                        markdownSyntax = "## ";
+                        break;
+                    case "h3":
+                        markdownSyntax = "### ";
+                        break;
+                    default:
+                        console.error("Unknown style:", style);
+                        return;
+                }
+
+                lines.forEach(function (item, index) {
+                    lines[index] = `${markdownSyntax}${item}\n`;
+                });
+
+                const newText = lines.join("");
+                textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+                textarea.setSelectionRange(start + markdownSyntax.length, start + newText.length - markdownSyntax.length);
+            }
+        }
+
+        function changeColor() {
+            const color = document.getElementById("color-picker").value;
+
+            const textarea = document.getElementById("content");
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+
+            const newText = `{color:${color}}${selectedText}{color}`;
+            textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+            textarea.setSelectionRange(start + newText.length - selectedText.length, start + newText.length);
+        }
+
+        function toggleView() {
+            const sourceTextarea = document.getElementById("content");
+            const outputDiv = document.getElementById("output");
+
+            if (sourceTextarea.style.display === "none") {
+                sourceTextarea.style.display = "block";
+                outputDiv.style.display = "none";
+            } else {
+                sourceTextarea.style.display = "none";
+                fetch("/internal/api/markdown-to-html/", {
+                                        method: "POST",
+                                        body: JSON.stringify({
+                                            data: sourceTextarea.value
+                                        }),
+                                        headers: {
+                                            "Content-type": "application/json; charset=UTF-8"
+                                        }
+                                        })
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok');
+                                            }
+                                            return response.text();
+                                        })
+                                        .then(html => {
+                                            outputDiv.innerHTML = html;
+                                        }
+                )
+                outputDiv.style.display = "block";
+            }
+        }
+
+        function uploadImage() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = "image/png, image/jpeg";
+
+            input.onchange = e => {
+                var file = e.target.files[0];
+                var formData = new FormData();
+                formData.append("file", file);
+
+                fetch("/internal/upload", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(imageUrl => {
+                    const textarea = document.getElementById("content");
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+
+                    const newText = `<img src="${imageUrl}" alt="${file.name}"/>`;
+                    textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+                })
+            }
+            input.click();
+        }
+    </script>
+</body>
+</html>

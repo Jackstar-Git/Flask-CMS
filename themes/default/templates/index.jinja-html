@@ -8,11 +8,10 @@
     <title>Flask-CMS</title>
 </head>
 <body>
+
     {% include 'navbar.jinja-html' %}
-    {% set x = User.find_all_users(query_params["test"]) %}
-
-
-
+    {% set x = query_params["test"] %}
+   
 
     <!--<header>
         <div class="left">
@@ -91,10 +90,7 @@
     <div>
         &nbsp;
     </div>-->
-    <div style="height: 80vh;">
-        <input type="text" id="search" placeholder="Search users..." onkeyup="test()"/>
-        <div id="test"></div>
-    </div>
+    <div style="height: 80vh;"></div>
     {% include 'footer.jinja-html' %}
 </body>
 </html>

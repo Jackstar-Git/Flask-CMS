@@ -1,6 +1,6 @@
 from .DataBase import DBClient
 from logging_utility import logger
-from datetime import datetime
+import time
 from utility import UUID
 
 class User:
@@ -15,7 +15,7 @@ class User:
                 "username": username,
                 'email': email, 
                 'password': password,
-                "created_at": datetime.timestamp(),
+                "created_at": time.time(),
                 "role_ids": [role.get("_id") for role in roles],
                 "login_tries": 0
                 }

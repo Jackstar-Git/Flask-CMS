@@ -5,7 +5,7 @@ from utility import hash_password
 from Models import Role
 
 
-register_blueprint = Blueprint("register", __name__, template_folder='./templates')
+register_blueprint = Blueprint("register", __name__)
 
 
 @register_blueprint.route('/register', methods=['GET', 'POST'])

@@ -15,7 +15,7 @@ permission_values = {
     "delete_users":       0b00000000001000000000,
     "update_users":       0b00000000010000000000,
     "admin_access":       0b00000000100000000000,
-    "undefined_atm":      0b00000001000000000000,
+    "manage_roles":       0b00000001000000000000,
     "file_uploads":       0b00000010000000000000,
     "file_management":    0b00000100000000000000,
     "template_editing":   0b00001000000000000000,
@@ -75,7 +75,7 @@ class Permissions:
 
     @classmethod
     def default(cls) -> Self:
-        return cls(0b00000000000010000001)
+        return cls(0b00000000000010100001)
 
     
     @staticmethod   

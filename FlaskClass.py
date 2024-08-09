@@ -1,8 +1,8 @@
 from flask import Flask
-from flask_wtf import CSRFProtect
 import os
+from datetime import timedelta
 
 template_name = os.getenv("THEME_NAME")
 app = Flask(__name__, template_folder=f'themes/{template_name}/templates', static_folder=f"themes/{template_name}/static")  
-app.secret_key = os.urandom(24)
-csrf = CSRFProtect(app)
+app.secret_key = "1"#os.urandom(24)
+app.permanent_session_lifetime = timedelta(days=365)

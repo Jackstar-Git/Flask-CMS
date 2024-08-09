@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/admin.css') }}">
+
+</head>
+<body>
+    <div class="main-container">
+        {% include "admin/sidebar.jinja-html" %}
+        <div class="main-content">
+            <div class="header">
+                <h1>Dashboard</h1>
+                <i class="fas fa-bell notification-icon"></i>
+            </div>
+            <div class="dashboard-cards">
+                <div class="card comments-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Comments</h3>
+                    <p>View and manage all comments.</p>
+                    <div class="data-section">
+                        <ul>
+                            <li>
+                                <h4>John Doe</h4>
+                                <p>"Great post! Really enjoyed reading it."</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-reply quick-action-btn"></i>
+                                    <i class="fa fa-trash quick-action-btn"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>Jane Smith</h4>
+                                <p>"I disagree with your point of view."</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-reply quick-action-btn"></i>
+                                    <i class="fa fa-trash quick-action-btn"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>Admin</h4>
+                                <p>"Thank you for your feedback."</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-reply quick-action-btn"></i>
+                                    <i class="fa fa-trash quick-action-btn"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card posts-card">
+                    <i class="fas fa-edit"></i>
+                    <h3>Posts</h3>
+                    <p>Manage your posts here.</p>
+                    <div class="data-section">
+                        <ul>
+                            <li>
+                                <h4>How to Learn JavaScript</h4>
+                                <p>Posted on July 30, 2024</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-eye quick-action-btn"></i>
+                                    <i class="fa fa-edit quick-action-btn"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>Understanding CSS Grid</h4>
+                                <p>Posted on July 28, 2024</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-eye quick-action-btn"></i>
+                                    <i class="fa fa-edit quick-action-btn"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>Web Development Trends 2024</h4>
+                                <p>Posted on July 25, 2024</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-eye quick-action-btn"></i>
+                                    <i class="fa fa-edit quick-action-btn"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card users-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Users</h3>
+                    <p>Manage user accounts and roles.</p>
+                    <div class="data-section">
+                        <ul>
+                            <li>
+                                <h4>New User: Sarah Connor</h4>
+                                <p>Joined on July 31, 2024</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-eye quick-action-btn"></i>
+                                    <i class="fa fa-edit quick-action-btn"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>New User: Tony Stark</h4>
+                                <p>Joined on July 30, 2024</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-eye quick-action-btn"></i>
+                                    <i class="fa fa-edit quick-action-btn"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>New User: Bruce Wayne</h4>
+                                <p>Joined on July 29, 2024</p>
+                                <div class="quick-action-buttons">
+                                    <i class="fa fa-eye quick-action-btn"></i>
+                                    <i class="fa fa-edit quick-action-btn"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div class="content-section">
+                <h2>Recent Users</h2>
+                <div class="stats">
+                    <div class="stat">
+                        <h4>Total Users</h4>
+                        <span>1,234</span>
+                    </div>
+                    <div class="stat">
+                        <h4>Active Users</h4>
+                        <span>789</span>
+                    </div>
+                    <div class="stat">
+                        <h4>New Signups</h4>
+                        <span>45</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas class="stats-chart" id="user-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Posts Section -->
+            <div class="content-section">
+                <h2>Recent Posts</h2>
+                <div class="stats">
+                    <div class="stat">
+                        <h4>Total Posts</h4>
+                        <span>567</span>
+                    </div>
+                    <div class="stat">
+                        <h4>Published Posts</h4>
+                        <span>432</span>
+                    </div>
+                    <div class="stat">
+                        <h4>Draft Posts</h4>
+                        <span>135</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas class="stats-chart" id="post-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="content-section">
+                <h2>Recent Comments</h2>
+                <div class="stats">
+                    <div class="stat">
+                        <h4>Total Comments</h4>
+                        <span>2,456</span>
+                    </div>
+                    <div class="stat">
+                        <h4>Approved Comments</h4>
+                        <span>1,980</span>
+                    </div>
+                    <div class="stat">
+                        <h4>Pending Comments</h4>
+                        <span>476</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas class="stats-chart" id="comment-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Submenu Toggle
+        const toggles = document.querySelectorAll('.menu-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                event.preventDefault();
+                this.classList.toggle('submenu-open');
+                const submenu = this.nextElementSibling;
+                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../static/javascript/admin.js"></script>
+</body>
+</html>

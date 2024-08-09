@@ -1,9 +1,9 @@
-from flask import render_template, request, redirect, url_for, session, Blueprint
+from flask import render_template, request, redirect, url_for, session, Blueprint, make_response
 from Models import User
 from logging_utility import logger
 from utility import hash_password
 
-login_blueprint = Blueprint("login", __name__, template_folder='./templates')
+login_blueprint = Blueprint("login", __name__)
 
 
 @login_blueprint.route('/login', methods=['GET', 'POST'])
@@ -13,7 +13,10 @@ def login():
         password = request.form['password']
         remember = request.form.get("remember-me", type=bool)
 
-        user: dict = User.find_user_by_mail(email)
+        user: dict | None = User.find_user_by_mail(email)
+        if user is None:
+            error = "User not found!"
+            return render_template('login.jinja-html', error=error)
         if user.get("login_tries", 0) >= 5:
             error = "This account is blocked because you entered the wrong password too many times!"
             logger.warning(msg="This account is blocked because you entered the wrong password too many times!")
@@ -22,6 +25,7 @@ def login():
             session["user"] = user
             if remember:
                 session.permanent = True
+                print(session)
             User.update_user_data(user["_id"], login_tries = 0)
             return redirect(url_for('dashboard.dashboard'))
         else:

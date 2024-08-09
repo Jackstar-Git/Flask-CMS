@@ -1,5 +1,4 @@
-from flask import Flask, render_template, url_for, make_response, request
-import os
+from flask import render_template, url_for, make_response, request
 from logging_utility import logger
 from routes import blueprints
 from dotenv import load_dotenv
@@ -8,7 +7,7 @@ from datetime import datetime
 from inspect import getmembers, isclass, isfunction
 import functions
 from FlaskClass import app
-
+import os
 
 load_dotenv()
 
@@ -30,6 +29,18 @@ def utility_processor():
 @app.route('/')
 def home():
     return render_template('index.jinja-html')
+
+
+#@app.route('/<path:path>', methods=['POST'])
+#def handle_file_uploads():
+#    if request.method =="POST":
+#        if request.files:
+#            today = datetime.date
+#            if not os.path.exists(os.path.join())
+
+
+
+
 
 @app.route('/sitemap.xml')
 def sitemap():

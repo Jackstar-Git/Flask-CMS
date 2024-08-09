@@ -1,0 +1,59 @@
+<nav class="sidebar">
+    <div class="logo">Admin Panel</div>
+    <div class="nav">
+    <div class="nav-item"><a href="/admin"><i class="fas fa-home-alt"></i> Overview</a></div>
+    <div class="nav-item">
+        <a href="#" class="menu-toggle"><i class="fas fa-copy"></i> Contents</a>
+        <div class="submenu">
+            <div class="submenu-item"><a href="/admin/posts/all">All Posts</a></div>
+            <div class="submenu-item"><a href="/admin/posts/create">Add New</a></div>
+            <div class="submenu-item"><a href="/admin/posts/categories">Categories</a></div>
+            <div class="submenu-item"><a href="/admin/posts/tags">Tags</a></div>
+            <div class="submenu-item"><a href="/admin/pages/all">All Pages</a></div>
+            <div class="submenu-item"><a href="/admin/pages/contents">Page Contents</a></div>
+            <div class="submenu-item"><a href="/admin/media/library">Library</a></div>
+            <div class="submenu-item"><a href="/admin/media/add">Add New Media</a></div>
+        </div>
+    </div>
+    <div class="nav-item">
+    <a href="#" class="menu-toggle"><i class="fas fa-comments"></i> Comments</a>
+        <div class="submenu">
+            <div class="submenu-item"><a href="/admin/comments/all">All Comments</a></div>
+            <div class="submenu-item"><a href="/admin/comments/pending">Pending</a></div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <a href="#" class="menu-toggle"><i class="fas fa-paint-brush"></i> Appearance & Add-ONs</a>
+        <div class="submenu">
+            <div class="submenu-item"><a href="/admin/appearance/customize">Customize</a></div>
+            <div class="submenu-item"><a href="/admin/appearance/widgets">Widgets</a></div>
+            <div class="submenu-item"><a href="/admin/appearance/menus">Menus</a></div>
+            <div class="submenu-item"><a href="/admin/appearance/colors">Colors</a></div>
+            <div class="submenu-item"><a href="/admin/addons/plugins">Installed Plugins</a></div>
+            <div class="submenu-item"><a href="/admin/addons/themes">Themes</a></div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <a href="#" class="menu-toggle"><i class="fas fa-users"></i> Users & Roles</a>
+        <div class="submenu">
+            <div class="submenu-item"><a href="/admin/users/all">Users</a></div>
+            <div class="submenu-item"><a href="/admin/users/roles">Roles</a></div>
+            <div class="submenu-item"><a href="/admin/users/permissions">Permissions</a></div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <a href="#" class="menu-toggle"><i class="fas fa-cogs"></i> Settings</a>
+        <div class="submenu">
+            <div class="submenu-item"><a href="/admin/settings/general">General</a></div>
+            <div class="submenu-item"><a href="/admin/settings/localization">Localization</a></div>
+            <div class="submenu-item"><a href="/admin/settings/language">Language</a></div>
+            <div class="submenu-item"><a href="/admin/settings/other">Other</a></div>
+        </div>
+        </div>
+    </div>
+    <div class="profile">
+        <a href="/dashboard"><img src="https://via.placeholder.com/40" alt="Profile Picture"></a>
+        <a id="username" href="/dashboard">{{get_current_user()["username"]}}</a>
+        <a href="/logout" class="logout-button">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+    </div>
+</nav>
